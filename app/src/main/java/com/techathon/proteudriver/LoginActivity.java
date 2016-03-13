@@ -138,6 +138,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(loginResponse != null) {
                         String accessToken = loginResponse.getAccessToken();
                         sessionManager.createLoginSession(email, accessToken);
+                        Toast.makeText(getBaseContext(), accessToken, Toast.LENGTH_LONG).show();
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(i);
                         finish();

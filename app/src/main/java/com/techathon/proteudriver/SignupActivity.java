@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,11 +30,12 @@ public class SignupActivity extends AppCompatActivity {
 
     // UI references.
     private EditText mNameView;
-    private EditText mCityView;
+    private EditText mCCView;
     private EditText mEmailView;
     private EditText mPasswordView;
     private EditText mRePasswordView;
     private ProgressDialog progressDialog;
+    private Spinner sBloodType;
 
     /**
      * Called when the activity is first created. This method set necessary info on creation.
@@ -45,10 +47,11 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         mNameView = (EditText) findViewById(R.id.name);
-        mCityView = (EditText) findViewById(R.id.city);
+        mCCView = (EditText) findViewById(R.id.cc);
         mEmailView = (EditText) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
         mRePasswordView = (EditText) findViewById(R.id.repassword);
+        sBloodType = (Spinner) findViewById(R.id.bloodType);
 
         Button mSignupButton = (Button) findViewById(R.id.sign_up_button);
         mSignupButton.setOnClickListener(new View.OnClickListener() {
@@ -80,17 +83,18 @@ public class SignupActivity extends AppCompatActivity {
     private void attemptSignup() {
         // Reset errors.
         mNameView.setError(null);
-        mCityView.setError(null);
+        mCCView.setError(null);
         mEmailView.setError(null);
         mPasswordView.setError(null);
         mRePasswordView.setError(null);
 
         // Store values at the time of the signup attempt.
         final String name = mNameView.getText().toString();
-        final String city = mCityView.getText().toString();
+        final String cc = mCCView.getText().toString();
         final String email = mEmailView.getText().toString();
         final String password = mPasswordView.getText().toString();
         final String repassword = mRePasswordView.getText().toString();
+        final String bloodType = (String) sBloodType.getSelectedItem();
 
         boolean cancel = false;
         View focusView = null;
@@ -125,9 +129,9 @@ public class SignupActivity extends AppCompatActivity {
         }
 
         // Check for valid contact
-        if(TextUtils.isEmpty(city)) {
-            mCityView.setError(getString(R.string.error_field_required));
-            focusView = mCityView;
+        if(TextUtils.isEmpty(cc)) {
+            mCCView.setError(getString(R.string.error_field_required));
+            focusView = mCCView;
             cancel = true;
         }
 
@@ -151,7 +155,7 @@ public class SignupActivity extends AppCompatActivity {
             // Show a progress spinner
             progressDialog.show();
 
-            Driver newDriver = new Driver("", "", "", "", "", "", "", "");
+            Driver newDriver = new Driver(email, password, name, cc, bloodType, "(91 XXX XXX)", "(91 112 XXX)", "(notas)", "(doenças)");
             Call<Driver> call = App.getLoginService().createDriver(newDriver);
             call.enqueue(new Callback<Driver>() {
                 @Override

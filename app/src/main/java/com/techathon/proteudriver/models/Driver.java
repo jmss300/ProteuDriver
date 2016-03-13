@@ -6,23 +6,33 @@ package com.techathon.proteudriver.models;
 public class Driver {
     private int id;
     private String email;
+    private String password;
     private String name;
     private String cc;
-    private String boodType;
+    private String bloodType;
     private String mobilePhone;
     private String emergencyContact;
     private String notes;
     private String diseases;
 
-    public Driver(String email, String name, String cc, String boodType, String mobilePhone, String emergencyContact, String notes, String diseases) {
+    public Driver(String email, String password, String name, String cc, String bloodType, String mobilePhone, String emergencyContact, String notes, String diseases) {
         this.email = email;
         this.name = name;
+        this.password = password;
         this.cc = cc;
-        this.boodType = boodType;
+        this.bloodType = bloodType;
         this.mobilePhone = mobilePhone;
         this.emergencyContact = emergencyContact;
         this.notes = notes;
         this.diseases = diseases;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -31,6 +41,14 @@ public class Driver {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -49,12 +67,12 @@ public class Driver {
         this.cc = cc;
     }
 
-    public String getBoodType() {
-        return boodType;
+    public String getBloodType() {
+        return bloodType;
     }
 
-    public void setBoodType(String boodType) {
-        this.boodType = boodType;
+    public void setBloodType(String boodType) {
+        this.bloodType = boodType;
     }
 
     public String getMobilePhone() {

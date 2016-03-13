@@ -8,7 +8,7 @@
     <string name="error_field_required">This field is required</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_up">Sign Up</string>
-    <string name="prompt_email">Email</string>
+    <string name="prompt_email">E-mail</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_retype_password">Retype Password</string>
     <string name="prompt_name">Name</string>

@@ -16,5 +16,5 @@ public interface LoginService {
     Call<LoginResponse> login(@Body LoginRequest credentials);
 
     @POST("Drivers/")
-    Call<Driver> createDriver(@Body Driver guest);
+    Call<Driver> createDriver(@Body Driver driver);
 }
