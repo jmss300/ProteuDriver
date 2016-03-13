@@ -16,7 +16,7 @@ public class SessionManager {
     private Context context;
 
     private static final int PRIVATE_MODE = 0;
-    private static final String PREF_NAME = "GuestPerf";
+    private static final String PREF_NAME = "DriverPerf";
     private static final String IS_LOGIN = "IsLoggedIn";
     private static final String KEY_EMAIL = "Email";
     private static final String KEY_ACCESS_TOKEN = "AccessToken";

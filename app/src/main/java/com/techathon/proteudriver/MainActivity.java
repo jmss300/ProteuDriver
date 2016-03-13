@@ -2,13 +2,12 @@ package com.techathon.proteudriver;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.techathon.proteudriver.app.App;
@@ -24,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     private SessionManager sessionManager;
     private ProgressDialog progressDialog;
+    private Button bAccident;
+    private boolean simulatingAccident = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.isIndeterminate();
 
         String accessToken = sessionManager.getLoggedAccessToken();
+        Toast.makeText(this.getApplicationContext(), accessToken, Toast.LENGTH_LONG);
         App.setClubService(accessToken);
 
         if(App.currentUser == null) {
@@ -53,12 +55,20 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        bAccident = (Button) findViewById(R.id.accident);
+        setTextButtonAccident();
+
+        bAccident.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                simulatingAccident = !simulatingAccident;
+                setTextButtonAccident();
+
+                if(simulatingAccident) {
+                    
+                }
+
             }
         });
     }
@@ -108,5 +118,10 @@ public class MainActivity extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         });
+    }
+
+    public void setTextButtonAccident() {
+        String text = (simulatingAccident) ?  "Stop Accident": "Simulate Accident";
+        bAccident.setText(text);
     }
 }
